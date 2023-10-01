@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "911714146636",
+    "project_id": "chatmatrix-5659d",
+    "storage_bucket": "chatmatrix-5659d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:911714146636:android:483cd491265dd8c771d7e9",
+        "android_client_info": {
+          "package_name": "com.example.chatmatrix"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxCGbuva0ViEhmhaD4yJmR_GXW0KIzY10"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

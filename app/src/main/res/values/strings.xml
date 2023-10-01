@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">ChatMatrix</string>
+    <string name="chat_matrix">Chat Matrix</string>
+    <string name="developer_name">From \n Harsh Kumar</string>
+    <string name="log_in">Log In</string>
+</resources>
