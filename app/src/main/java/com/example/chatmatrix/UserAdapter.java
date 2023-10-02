@@ -1,5 +1,6 @@
 package com.example.chatmatrix;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +19,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewHolder> {
 
-    MainActivity mainActivity;
+    Context mainActivity;
     ArrayList<UsersDatabase> usersDatabaseArrayList;
     public UserAdapter(MainActivity mainActivity, ArrayList<UsersDatabase> usersDatabaseArrayList) {
         this.mainActivity = mainActivity;

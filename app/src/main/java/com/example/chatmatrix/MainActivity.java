@@ -1,6 +1,7 @@
 package com.example.chatmatrix;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -28,13 +30,16 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView main_user_recyclerView;
     UserAdapter userAdapter;
     ArrayList<UsersDatabase> usersDatabaseArrayList;
-    ImageView logout_image;
+    ImageView logout_image, setting_main, add_image_main;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
+
+        setting_main = findViewById(R.id.setting_main);
+        add_image_main = findViewById(R.id.add_image_main);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -63,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         main_user_recyclerView.setAdapter(userAdapter);
 
         if(firebaseAuth.getCurrentUser() == null) {
+            finish();
             callNextActivity(Login.class);
         }
 
@@ -78,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         firebaseAuth.signOut();
+                        finish();
                         displayToast("Logged Out Successfully");
                         callNextActivity(Login.class);
                     }
@@ -90,10 +97,25 @@ public class MainActivity extends AppCompatActivity {
                 name.show();
             }
         });
+
+        setting_main.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callNextActivity(Setting.class);
+            }
+        });
+
+        add_image_main.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, 999);
+            }
+        });
     }
 
+
     private void callNextActivity(Class<?> destinationActivity) {
-        finish();
         Intent intent = new Intent(MainActivity.this, destinationActivity);
         startActivity(intent);
     }

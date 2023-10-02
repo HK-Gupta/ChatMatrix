@@ -12,8 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@id/guideline2"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -21,9 +20,9 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_pic_chatClass"
-            android:layout_width="151dp"
-            android:layout_height="130dp"
-            android:layout_marginTop="10dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_margin="10dp"
             android:src="@drawable/photocamera" />
 
         <TextView
@@ -32,7 +31,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
             android:fontFamily="@font/poppins_regular"
-            android:gravity="center"
             android:text="Temp Text"
             android:textColor="@color/white"
             android:textSize="18dp"
@@ -44,11 +42,13 @@
         android:id="@+id/message_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linear_layout_chatClass" />
+        app:layout_constraintTop_toBottomOf="@+id/linear_layout_chatClass"
+        app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -57,14 +57,12 @@
         android:layout_margin="4dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guideline"
-        app:layout_constraintVertical_bias="0.5"
-        tools:layout_editor_absoluteX="0dp">
+        tools:layout_editor_absoluteX="4dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:layout_marginStart="6dp"
+            android:layout_marginStart="7dp"
             android:layout_marginEnd="10dp"
             android:layout_weight="1"
             app:cardCornerRadius="18dp">
@@ -74,11 +72,11 @@
                 android:layout_width="339dp"
                 android:layout_height="45dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="27dp"
+                android:layout_marginLeft="30dp"
                 android:background="@null"
                 android:fontFamily="@font/poppins_regular"
                 android:hint="Start Chatting.."
-                android:paddingStart="8dp" />
+                android:paddingStart="12dp" />
 
         </androidx.cardview.widget.CardView>
 
@@ -101,19 +99,7 @@
 
     </LinearLayout>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.88" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.22" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
