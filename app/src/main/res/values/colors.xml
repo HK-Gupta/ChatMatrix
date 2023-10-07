@@ -2,4 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="green">#0F9D58</color>
+    <color name="heading_login">#03DAC5</color>
+    <color name="subheading_login">#B9E4C9</color>
+    <color name="user_name_status">#03DAC5</color>
+    <color name="email_pass">#37966F</color>
+    <color name="status_bar">#232F34</color>
+    <color name="action_bar">#344955</color>
 </resources>

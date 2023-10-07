@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/logout_id"
+        android:title="Log Out"
+        android:icon="@drawable/logout"
+        app:showAsAction="ifRoom"
+        android:background="#004D40"/>
+
+    <item android:id="@+id/goto_setting"
+        android:title="Setting"
+        android:icon="@drawable/setting"
+        app:showAsAction="ifRoom"
+        android:background="#004D40"/>
+
+
+</menu>

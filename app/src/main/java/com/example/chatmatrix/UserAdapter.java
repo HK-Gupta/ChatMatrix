@@ -37,9 +37,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewHolder> {
     @Override
     public void onBindViewHolder(@NonNull UserAdapter.viewHolder holder, int position) {
         UsersDatabase usersDatabase = usersDatabaseArrayList.get(position);
-        holder.user_name.setText(usersDatabase.userName);
-        holder.user_status.setText(usersDatabase.userStatus);
-        Picasso.get().load(usersDatabase.profilePic).into(holder.user_image);
+        holder.user_name.setText(usersDatabase.getUserName());
+        holder.user_status.setText(usersDatabase.getUserStatus());
+        Picasso.get().load(usersDatabase.getProfilePic()).into(holder.user_image);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

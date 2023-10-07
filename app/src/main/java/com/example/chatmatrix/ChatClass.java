@@ -1,16 +1,25 @@
 package com.example.chatmatrix;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,23 +44,27 @@ public class ChatClass extends AppCompatActivity {
     public static String senderImg;
     public static String receiverImg;
     String senderRoom, receiverRoom;
-
     String  receiverName, receiverImage, receiverUid, senderUid;
-    CircleImageView profile_pic_chatClass;
-    TextView text_receiver_name;
     CardView btn_send_message;
     EditText txt_write_message;
+    ImageView send_attach_file;
     RecyclerView message_recycler_view;
     FirebaseAuth firebaseAuth;
     FirebaseDatabase firebaseDatabase;
     ArrayList<MessageModel> messageModelArrayList;
     MessageAdapter mMessageAdapter;
+    Uri fileUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_class);
-        getSupportActionBar().hide();
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Chat Matrix");
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#344955"));
+        actionBar.setBackgroundDrawable(colorDrawable);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -62,11 +75,10 @@ public class ChatClass extends AppCompatActivity {
 
         messageModelArrayList = new ArrayList<>();
 
-        profile_pic_chatClass = findViewById(R.id.profile_pic_chatClass);
-        text_receiver_name = findViewById(R.id.text_receiver_name);
         btn_send_message = findViewById(R.id.btn_send_message);
         txt_write_message = findViewById(R.id.txt_write_message);
         message_recycler_view = findViewById(R.id.message_recycler_view);
+        send_attach_file = findViewById(R.id.send_attach_file);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setStackFromEnd(true);
@@ -74,9 +86,7 @@ public class ChatClass extends AppCompatActivity {
         mMessageAdapter = new MessageAdapter(ChatClass.this, messageModelArrayList);
         message_recycler_view.setAdapter(mMessageAdapter );
 
-
-        Picasso.get().load(receiverImage).into(profile_pic_chatClass);
-        text_receiver_name.setText("" + receiverName);
+        actionBar.setTitle(""+ receiverName);
 
         senderUid = firebaseAuth.getUid();
         senderRoom = senderUid + receiverUid;
@@ -114,6 +124,16 @@ public class ChatClass extends AppCompatActivity {
             }
         });
 
+        send_attach_file.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setType("*/*");  // You can specify the file type(s) you want to allow here
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select File"), 999);
+            }
+        });
+
         btn_send_message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -122,9 +142,13 @@ public class ChatClass extends AppCompatActivity {
                     Toast.makeText(ChatClass.this, "Nothing to Send", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
                 txt_write_message.setText("");
                 Date date = new Date();
                 MessageModel messageModel = new MessageModel(message, senderUid, date.getTime());
+
+
+
                 firebaseDatabase = FirebaseDatabase.getInstance();
                 firebaseDatabase.getReference().child("chats").child(senderRoom)
                             .child("message").push().setValue(messageModel)
@@ -145,5 +169,29 @@ public class ChatClass extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.chat_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        finish();
+        Intent intent = new Intent(ChatClass.this, MainActivity.class);
+        startActivity(intent);
+        return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 999) {
+            if (resultCode == RESULT_OK && data != null) {
+                fileUri = data.getData();
+            }
+        }
     }
 }

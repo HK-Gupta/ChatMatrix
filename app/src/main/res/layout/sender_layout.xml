@@ -25,7 +25,7 @@
         android:layout_marginBottom="6dp"
         android:layout_toLeftOf="@+id/sender_pic_message"
         android:fontFamily="@font/poppins_regular"
-        android:padding="10dp"
+        android:padding="7dp"
         android:text="Hello"
         android:textColor="@color/black"
         android:textStyle="bold"

@@ -28,7 +28,7 @@
         android:layout_marginRight="30dp"
         android:padding="2dp"
         android:text="Welcome Back !"
-        android:textColor="#36C2DB"
+        android:textColor="@color/heading_login"
         android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -44,7 +44,7 @@
         android:layout_marginRight="30dp"
         android:padding="4dp"
         android:text="Login To Continue"
-        android:textColor="#426CE7"
+        android:textColor="@color/subheading_login"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,7 +57,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:background="#cdcdcd"
+        android:background="@color/email_pass"
+        android:textColorHint="@color/subheading_login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -72,6 +73,7 @@
             android:layout_height="wrap_content"
             android:hint="Enter Your Password"
             android:inputType="textPassword"
+            android:background="@color/email_pass"
             android:padding="10dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -114,7 +116,7 @@
         android:textColor="@color/black"
         android:padding="7dp"
         android:gravity="center"
-        android:background="#cdcdcd"
+        android:background="@drawable/email_pass_border"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -128,7 +130,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:background="#cdcdcd"
+        android:background="@color/email_pass"
+        android:textColorHint="@color/subheading_login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -140,6 +143,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Your Mail Id"
+            android:textColor="@color/subheading_login"
+            android:background="@color/email_pass"
             android:inputType="textEmailAddress"
             android:padding="10dp" />
     </com.google.android.material.textfield.TextInputLayout>

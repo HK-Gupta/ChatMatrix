@@ -3,7 +3,7 @@ package com.example.chatmatrix;
 import android.net.Uri;
 
 public class UsersDatabase {
-    String profilePic, userEmail, userName, password, userId, lastMessage, userStatus;
+    private String profilePic, userEmail, userName, password, userId, lastMessage, userStatus;
 
     public UsersDatabase() {}
     public UsersDatabase(String userId, String userEmail, String userName, String password, String profilePic, String userStatue) {
