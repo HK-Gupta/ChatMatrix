@@ -10,10 +10,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +36,7 @@ public class UserProfile extends AppCompatActivity {
     TextView profile_user_name, profile_user_status, profile_user_mail, profile_user_password, profile_user_id;
     FirebaseAuth firebaseAuth;
     FirebaseDatabase firebaseDatabase;
+    Boolean isMenuAdded = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +57,12 @@ public class UserProfile extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#344955"));
         actionBar.setBackgroundDrawable(colorDrawable);
+        if (Build.VERSION.SDK_INT >= 21) {
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.status_bar));
+        }
 
         DatabaseReference databaseReference = firebaseDatabase.getReference().child("user").child(firebaseAuth.getUid());
 
@@ -91,10 +101,9 @@ public class UserProfile extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.goto_setting) {
+        if (item.getItemId() == R.id.goto_setting) {
             callNextActivity(Setting.class);
-        }
-        else if(item.getItemId() == R.id.logout_id) {
+        } else if (item.getItemId() == R.id.logout_id) {
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
             alert.setCancelable(false);
             alert.setTitle("Logging Out!");
@@ -105,7 +114,10 @@ public class UserProfile extends AppCompatActivity {
                     firebaseAuth.signOut();
                     finish();
                     Toast.makeText(UserProfile.this, "Logged Out Successfully", Toast.LENGTH_SHORT).show();
-                    callNextActivity(Login.class);
+                    Intent intent = new Intent(UserProfile.this, Login.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish();
                 }
             }).setNegativeButton("No", new DialogInterface.OnClickListener() {
                 @Override
@@ -114,12 +126,10 @@ public class UserProfile extends AppCompatActivity {
                 }
             });
             alert.show();
-
         } else {
             finish();
             callNextActivity(MainActivity.class);
         }
-
         return true;
     }
 

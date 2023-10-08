@@ -6,32 +6,38 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/iconcm"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/iconcm"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
         tools:targetApi="31">
         <activity
             android:name=".UserProfile"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".Setting"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ForgotPassword"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ChatClass"
             android:exported="false" />
         <activity
             android:name=".SignUp"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".Login"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".Splash"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

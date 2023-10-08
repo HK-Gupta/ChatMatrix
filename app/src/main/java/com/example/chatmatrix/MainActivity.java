@@ -14,10 +14,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -67,6 +70,12 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setHomeButtonEnabled(false); // Disable the button.
         actionBar.setDisplayHomeAsUpEnabled(false); // Remove left caret.
         actionBar.setDisplayShowHomeEnabled(false); // Remove icon.
+        if (Build.VERSION.SDK_INT >= 21) {
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.status_bar));
+        }
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -156,9 +165,12 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     firebaseAuth.signOut();
-                    finish();
                     displayToast("Logged Out Successfully");
-                    callNextActivity(Login.class);
+                    Intent intent = new Intent(MainActivity.this, Login.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish();
+
                 }
             }).setNegativeButton("No", new DialogInterface.OnClickListener() {
                 @Override

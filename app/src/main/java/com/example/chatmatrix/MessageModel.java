@@ -1,5 +1,7 @@
 package com.example.chatmatrix;
 
+import android.provider.MediaStore;
+
 public class MessageModel {
     String message, senderId;
     long timeStamp;

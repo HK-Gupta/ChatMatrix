@@ -10,10 +10,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -46,7 +49,6 @@ public class Setting extends AppCompatActivity {
     String email, password, profilePic;
     Uri imageUri;
     ProgressDialog mProgressDialog;
-    String imageUriStr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,13 @@ public class Setting extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#344955"));
         actionBar.setBackgroundDrawable(colorDrawable);
+        if (Build.VERSION.SDK_INT >= 21) {
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.status_bar));
+        }
+
 
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setMessage("Data is currently being updated");
@@ -74,8 +83,6 @@ public class Setting extends AppCompatActivity {
         // Fetching the data form firebase.
         DatabaseReference databaseReference = firebaseDatabase.getReference().child("user").child(firebaseAuth.getUid());
         StorageReference storageReference = firebaseStorage.getReference().child("Upload").child(firebaseAuth.getUid());
-
-        imageUriStr = "https://firebasestorage.googleapis.com/v0/b/chatmatrix-5659d.appspot.com/o/avatar.png?alt=media&token=bc28e5cf-7eb6-4da0-9e3d-56d6e933d2e0";
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -113,12 +120,9 @@ public class Setting extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mProgressDialog.show();
+                displayToast("Please Change the Default Image to Continue.");
                 String name = setting_name_change.getText().toString();
                 String status = setting_status_change.getText().toString();
-                if(profilePic == imageUriStr) {
-                    mProgressDialog.dismiss();
-                    Toast.makeText(Setting.this, "Please update the default image to continue", Toast.LENGTH_LONG).show();
-                }
                 if(imageUri != null) {
                     mProgressDialog.dismiss();
                     storageReference.putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {

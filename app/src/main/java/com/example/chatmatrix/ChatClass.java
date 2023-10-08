@@ -13,11 +13,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -65,6 +68,12 @@ public class ChatClass extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#344955"));
         actionBar.setBackgroundDrawable(colorDrawable);
+        if (Build.VERSION.SDK_INT >= 21) {
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.status_bar));
+        }
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -78,7 +87,7 @@ public class ChatClass extends AppCompatActivity {
         btn_send_message = findViewById(R.id.btn_send_message);
         txt_write_message = findViewById(R.id.txt_write_message);
         message_recycler_view = findViewById(R.id.message_recycler_view);
-        send_attach_file = findViewById(R.id.send_attach_file);
+//        send_attach_file = findViewById(R.id.send_attach_file);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setStackFromEnd(true);
@@ -124,15 +133,15 @@ public class ChatClass extends AppCompatActivity {
             }
         });
 
-        send_attach_file.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setType("*/*");  // You can specify the file type(s) you want to allow here
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select File"), 999);
-            }
-        });
+//        send_attach_file.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent();
+//                intent.setType("*/*");  // You can specify the file type(s) you want to allow here
+//                intent.setAction(Intent.ACTION_GET_CONTENT);
+//                startActivityForResult(Intent.createChooser(intent, "Select File"), 999);
+//            }
+//        });
 
         btn_send_message.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,8 +155,6 @@ public class ChatClass extends AppCompatActivity {
                 txt_write_message.setText("");
                 Date date = new Date();
                 MessageModel messageModel = new MessageModel(message, senderUid, date.getTime());
-
-
 
                 firebaseDatabase = FirebaseDatabase.getInstance();
                 firebaseDatabase.getReference().child("chats").child(senderRoom)

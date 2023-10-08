@@ -10,10 +10,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_marginStart="13dp"
-        android:layout_marginLeft="13dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="13dp"
-        android:layout_marginEnd="13dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="13dp"
         android:src="@drawable/photocamera" />
 
@@ -22,9 +21,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginStart="6dp"
         android:layout_marginTop="6dp"
-        android:layout_marginEnd="6dp"
+        android:layout_marginEnd="2dp"
         android:layout_marginBottom="6dp"
         android:layout_toRightOf="@+id/receiver_pic_message"
         android:background="@drawable/receiver_shape"

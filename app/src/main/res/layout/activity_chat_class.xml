@@ -21,7 +21,7 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:layout_margin="4dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -40,21 +40,13 @@
                 android:id="@+id/txt_write_message"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:layout_gravity="center|left"
-                android:layout_marginLeft="18dp"
-                android:background="@null"
+                android:background="@color/subheading_login"
                 android:fontFamily="@font/poppins_regular"
                 android:hint="Start Chatting.."
-                android:paddingStart="12dp" />
-            <ImageView
-                android:id="@+id/send_attach_file"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="right|center"
-                android:layout_marginRight="5dp"
-                android:background="@drawable/attach_file" />
+                android:paddingStart="7dp" />
 
         </androidx.cardview.widget.CardView>
+
 
         <androidx.cardview.widget.CardView
             android:id="@+id/btn_send_message"
@@ -63,12 +55,12 @@
             android:layout_marginStart="6dp"
             android:layout_marginEnd="6dp"
             android:layout_weight="1"
-            app:cardCornerRadius="18dp">
+            app:cardCornerRadius="20dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="left"
                 android:background="@drawable/sendbut" />
 
 
