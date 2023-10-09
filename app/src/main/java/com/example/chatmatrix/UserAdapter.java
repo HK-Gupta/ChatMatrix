@@ -29,6 +29,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewHolder> {
     @NonNull
     @Override
     public UserAdapter.viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // Inflating the User items in teh layout.
         View view = LayoutInflater.from(mainActivity).inflate(R.layout.users_item, parent, false);
         return new viewHolder(view);
 
@@ -36,6 +37,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull UserAdapter.viewHolder holder, int position) {
+        // Setting the User information int the holder
         UsersDatabase usersDatabase = usersDatabaseArrayList.get(position);
         holder.user_name.setText(usersDatabase.getUserName());
         holder.user_status.setText(usersDatabase.getUserStatus());

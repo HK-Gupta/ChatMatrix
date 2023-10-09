@@ -83,6 +83,7 @@ public class SignUp extends AppCompatActivity {
         profile_pic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Taking the image from the external device like gallery etc.
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -127,6 +128,7 @@ public class SignUp extends AppCompatActivity {
         DatabaseReference databaseReference = mFirebaseDatabase.getReference().child("user").child(id);
         StorageReference storageReference = mFirebaseStorage.getReference().child("Upload").child(id);
 
+        // This code will be executed if user selects the Image From external device.
         if(imageUri != null) {
             storageReference.putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -142,6 +144,7 @@ public class SignUp extends AppCompatActivity {
                 }
             });
         } else {
+            // This is the Uri of the default image.
             imageUriStr = "https://firebasestorage.googleapis.com/v0/b/chatmatrix-5659d.appspot.com/o/avatar.png?alt=media&token=bc28e5cf-7eb6-4da0-9e3d-56d6e933d2e0";
         }
         UsersDatabase usersDatabase = new UsersDatabase(id, emailId, name, password, imageUriStr, userStatue);

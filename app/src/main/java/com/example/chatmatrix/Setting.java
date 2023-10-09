@@ -87,6 +87,7 @@ public class Setting extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // Getting all the details of the User.
                 email = snapshot.child("userEmail").getValue().toString();
                 password = snapshot.child("password").getValue().toString();
                 String userName = snapshot.child("userName").getValue().toString();
@@ -125,6 +126,7 @@ public class Setting extends AppCompatActivity {
                 String status = setting_status_change.getText().toString();
                 if(imageUri != null) {
                     mProgressDialog.dismiss();
+                    // If the User Change the image then we have to add that image to the database.
                     storageReference.putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {

@@ -62,10 +62,6 @@ public class Login extends AppCompatActivity {
                 if(email.isEmpty() || password.isEmpty()) {
                     mProgressDialog.dismiss();
                     displayToast("Please Fill All The Fields");
-                } else if(password.length() < 6) {
-                    mProgressDialog.dismiss();
-                    login_password.setError("Please Enter a Strong Password");
-                    displayToast("Password is too weak,\nKindly use a strong password.");
                 } else {
                     firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -73,6 +69,7 @@ public class Login extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 mProgressDialog.show();
                                 checkMailMethod();
+                                mProgressDialog.dismiss();
                             } else {
                                 displayToast("Email & Password is Not Recognised");
                             }
