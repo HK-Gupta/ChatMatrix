@@ -112,6 +112,7 @@ public class ChatClass extends AppCompatActivity {
                     messageModelArrayList.add(messageModel);
                 }
                 mMessageAdapter.notifyDataSetChanged();
+                message_recycler_view.smoothScrollToPosition(mMessageAdapter.getItemCount());
             }
 
             @Override

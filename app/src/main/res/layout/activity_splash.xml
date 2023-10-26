@@ -4,19 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/subheading_login"
+    android:background="@color/action_bar"
     tools:context=".Splash">
 
-    <ImageView
+
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/logoImg"
-        android:layout_width="@dimen/_250sdp"
-        android:layout_height="@dimen/_200sdp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_margin="12dp"
+        android:src="@drawable/av"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.427"
-        app:srcCompat="@drawable/av" />
+        app:layout_constraintVertical_bias="0.287" />
 
     <TextView
         android:id="@+id/logoName"
@@ -25,13 +28,14 @@
         android:fontFamily="@font/apptext"
         android:gravity="center"
         android:text="@string/chat_matrix"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="@dimen/_30sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.707" />
+        app:layout_constraintVertical_bias="0.681" />
 
     <TextView
         android:id="@+id/developerName"
@@ -40,7 +44,7 @@
         android:fontFamily="@font/spartan_thin"
         android:gravity="center"
         android:text="@string/developer_name"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="@dimen/_14sdp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

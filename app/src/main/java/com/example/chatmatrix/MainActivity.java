@@ -152,7 +152,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.goto_setting_main) {
-            finish();
             callNextActivity(Setting.class);
         } else if (item.getItemId()==R.id.user_profile_main) {
             callNextActivity(UserProfile.class);
