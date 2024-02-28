@@ -21,9 +21,9 @@ Crafted a stylish and user-friendly chat application with a focus on aesthetics 
      <td>Contacts</td>
   </tr>
   <tr>
-    <td><img src="https://github.com/HK-Gupta/ChatMatrix/assets/116277672/cd0d909f-943b-4fd9-8ca5-46fc4cc1ab77"></td>
+    <td><img src="https://github.com/HK-Gupta/ChatMatrix/assets/116277672/1697b00a-9a66-413a-8062-1bd0d2bc53797"></td>
     <td><img src="https://github.com/HK-Gupta/ChatMatrix/assets/116277672/44b41384-1c63-4a05-8341-b32e3f4c184a"></td>
-    <td><img src="https://github.com/HK-Gupta/ChatMatrix/assets/116277672/9df4707b-d386-4fa0-82ad-4ad39d6c352b"></td>
+    <td><img src="https://github.com/HK-Gupta/ChatMatrix/assets/116277672/7f12c57e-fad6-4010-8396-922fd1d778b9"></td>
   </tr>
  </table>
 
@@ -47,4 +47,6 @@ Crafted a stylish and user-friendly chat application with a focus on aesthetics 
 1. Clone the repository.
    ```bash
    git clone https://github.com/HK-Gupta/ChatMatrix/new/master?filename=README.md
+
+
 
